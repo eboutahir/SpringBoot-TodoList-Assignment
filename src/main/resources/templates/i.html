@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" title="Coding design">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylebtn.css">
+    <link rel="icon" href="../static/images/list.png ">
+
+</head>
+
+<body>
+
+
+    <main class="table">
+        <div class="container">
+            <div class="btn"><a href="/create-todo">Add to do !</a></div></div>
+        <section class="table__header">
+            <h1 th:text="|Happy ${today}|">Today</h1>
+            <div class="input-group">
+                <input type="search" placeholder="Search Data...">
+                <img src="../static/images/search.png" th:src="@{images/search.png} " alt=""/>
+            </div>
+
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+
+                <tr>
+                    <th>Actions</th>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Complete</th>
+                    <th>Created Date</th>
+                    <th>Modified Date</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="item : ${todoItems}" th:class="${item.complete} ? success : warning">
+                    <td>
+                        <div class="btn btn-group-sm" role="group">
+                            <a class="btn" th:href="@{/edit/{id}(id=${item.id})}">Edit</a>
+                            <a class="btn" th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                        </div>
+                    </td>
+
+                    <td th:text="${item.id}">item_id</td>
+                    <td th:text="${item.description}">item_description</td>
+                    <td th:text="${item.complete}">item_complete</td>
+                    <td th:text="${item.createdDate}">item_created_date</td>
+                    <td th:text="${item.modifiedDate}">item_modified_date</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </section>
+
+
+    </main>
+
+
+
+</div>
+</body>
+
+</html>

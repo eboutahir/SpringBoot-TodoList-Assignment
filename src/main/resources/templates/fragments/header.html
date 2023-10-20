@@ -1,0 +1,21 @@
+<header th:fragment="header">
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" th:href="@{/tasks}">
+      <img th:src="@{/images/logo.png}" alt="Your Image" width="140" height="140" />
+      𝓩𝓐𝓩𝓐𝓣𝓞𝓓𝓞𝓛𝓘𝓢𝓣
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="topNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/tasks}">MyTasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/tasks/new}">Add new Task</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

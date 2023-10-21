@@ -1,0 +1,93 @@
+/* Styles de texte modernes avec des couleurs lisibles */
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Styles pour le texte "TO DO LIST" */
+h1 {
+    font-size: 50px;
+    font-weight: 700; /* Gras */
+    margin-top : 700;
+    text-transform: uppercase;
+    text-align: center; /* Centrage du texte */
+    color: #007BFF; /* Couleur de départ */
+    animation: colorChange 6s infinite; /* Animation de couleur */
+}
+
+/* Animation de couleur */
+@keyframes colorChange {
+    0% { color: #007BFF; }
+    25% { color: #FFC107; }
+    50% { color: #28A745; }
+    75% { color: #DC3545; }
+    100% { color: #007BFF; }
+}
+
+
+/* Styles pour le tableau avec des couleurs lisibles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table th {
+    background-color: #007BFF;
+    color: #d473d4;
+    padding: 10px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+table tr.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+table tr.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* Styles pour le bouton avec des couleurs lisibles */
+/* Styles pour le bouton moderne avec animation de couleur */
+.btn {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+  .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Pour occuper toute la hauteur de la vue */
+        }
+ body {
+            background-image: url('images.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+

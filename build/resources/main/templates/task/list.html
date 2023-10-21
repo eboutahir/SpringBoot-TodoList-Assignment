@@ -1,0 +1,63 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Task List</h1>
+    <div class="input-group-append">
+    <button class="btn btn-primary" type="button" th:href="@{/tasks/getall}">
+        <i class="fa fa-search"></i> lister
+    </button>
+</div></br>
+
+    <a th:href="@{/tasks/new}" class="btn btn-primary">Add Task</a>
+    <div class="container mt-4">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Recherche...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" th:href="@{/tasks/taskIdg}">
+                    <i class="fa fa-search"></i> Rechercher
+                </button>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Complete</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.id}"></td>
+            <td th:text="${task.nomTache}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.complete} ? 'Yes' : 'No'"></td>
+            <td th:text="${task.dateDebut}"></td>
+            <td th:text="${task.dateFin}"></td>
+            <td>
+                <a th:href="@{/tasks/{id}/edit(id=${task.id})}" class="btn btn-info">Edit</a>
+                <a th:href="@{/tasks/{id}/delete(id=${task.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>-->
+
+
+
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Task List</title>
@@ -9,7 +9,23 @@
 
 <div class="container">
     <h1>Task List</h1>
+    <div class="input-group-append">
+    <button class="btn btn-primary" type="button" th:href="@{/tasks/getall}">
+        <i class="fa fa-search"></i> lister
+    </button>
+</div></br>
+
     <a th:href="@{/tasks/new}" class="btn btn-primary">Add Task</a>
+    <div class="container mt-4">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Recherche...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" th:href="@{/tasks/taskIdg}">
+                    <i class="fa fa-search"></i> Rechercher
+                </button>
+            </div>
+        </div>
+    </div>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -40,4 +56,8 @@
 </div>
 
 </body>
-</html>
+</html>-->
+
+
+
+

@@ -1,0 +1,45 @@
+.congratulation-message {
+    transition: transform 0.5s;
+}
+.congratulation-message:hover {
+    transform: scale(1.1);
+}
+.notification {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: top 0.5s;
+}
+.notification i {
+    font-size: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.notification p {
+    margin: 0;
+    display: inline-block;
+}
+.notification.show {
+    top: 60px;
+}
+body {
+    background-color: #f0f0f0;
+}
+h1 {
+    font-size: 32px;
+    color: #9ad9ab;
+}
+body {
+    background-image: url('back.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+}
+table {
+    background-color: transparent;
+}

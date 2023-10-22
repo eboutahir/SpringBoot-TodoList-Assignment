@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Incompleted Tasks</title>
+</head>
+<body>
+<h1>Incompleted Tasks</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Task</th>
+  </tr>
+  <tr th:each="task : ${incompletedTasks}">
+    <td th:text="${task.id}">1</td>
+    <td th:text="${task.task}">Incomplete assignment</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To Do List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <h2>To Do List <img src="/images/icon.png"> </h2>
+            <form action="/add/tasks" method="post">
+                <div class="row">
+                    <input type="text" id="input-box" name="name" placeholder="Add your task">
+                    <button type="submit">Add Task</button>
+                </div>
+            </form>
+            <ul id="list_container">
+               
+
+                <li th:each="task : ${tasks}" th:classappend="${task.completed} ? 'cheked' : ''">
+                    <span th:text="${task.name}"></span>
+
+                   
+                    <a th:href="@{/tasks/{taskId}/edit(taskId=${task.id})}" class="edit-link">
+                        <i class="fas fa-edit task-icon"></i>
+                    </a>
+                    
+                    
+                    <a th:href="@{'/tasks/' + ${task.id} + '/delete'}" class="delete-link">
+                        <i class="fas fa-trash delete-icon"></i>
+                    </a>
+                  
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:'Poppings',sans-serif;
+    box-sizing:border-box;
+    }
+    .container{
+        width: 100%;
+        min-height: 100vh;
+        background:linear-gradient(135deg,#153677,#4e085f) ;
+        padding: 10px;
+    }
+    .todo-app{
+    width: 100%;
+    max-width: 540px;
+    background: #fff;
+    margin: 100px auto 20px;
+    padding:  40px 30px 70px;
+    border-radius: 10px;
+    }
+    .todo-app h2{
+    
+        color: #002765;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+       
+    }
+    .todo-app h2 img{
+        width: 30px;
+        margin-left: 10px;
+    }
+    .row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+    background: #edeef0;
+    }
+    input{
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 10px;
+        font-weight: 14px;
+    }
+    button{
+        border: none;
+        outline: none;
+        padding: 16px 50px;
+        background: #45ff9c;
+        color:#fff;
+        font-size: 16PX;
+        cursor: pointer;
+       border-radius: 40px;
+    }
+    ul li{
+        list-style: none;
+        font-size: 17px;
+        padding: 12px 8px 12px 50px;
+        user-select: none;
+        cursor: pointer;
+        position: relative;
+    }
+    ul li::before{
+        content: '';
+        position: absolute;
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
+        background-image:url(/images/unchecked.png);
+        background-size: cover;
+        background-position: center;
+        top: 12PX;
+        left: 8px;
+    }
+    ul li.cheked{
+    color: #002765;
+    text-decoration: line-through;
+    }
+    ul li.cheked::before{
+    background-image:url(/images/checked.png);
+    }
+    .fas.fa-trash {
+        color: red;
+        float: right; /* Place l'icône de suppression à droite */
+    }
+    
+    .fas.fa-edit.task-icon {
+        color: blue;
+        float: right; /* Place l'icône de mise à jour à droite */
+    }
+    
+    /* Optionnel : Ajouter une marge entre les icônes pour les espacer */
+    .fas.fa-trash, .fas.fa-edit.task-icon {
+        margin-left: 10px; /* Ajoutez une marge entre les icônes */
+    }
+    .icon-button {
+        font-size: 16px; /* Vous pouvez ajuster la taille en fonction de la taille de l'icône */
+        background-color: transparent; /* Pour supprimer le fond du bouton */
+        border: none; /* Pour supprimer les bordures du bouton */
+        cursor: pointer; /* Pour indiquer que c'est un élément cliquable */
+      }

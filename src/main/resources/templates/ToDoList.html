@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="/static/js/js.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+</head>
+<body>
+        <div class="col-md-6">
+            <div class="p-4 bg-white notes">
+                <div class="d-flex flex-row align-items-center notes-title">
+                    <h4>To-Do List</h4>
+                </div>
+                <table>
+            <div class="p-3 bg-white" th:each="todo : ${todos}"  >
+                <tr>
+                    <td>
+                        <div  class="d-flex align-items-center">
+                            <label>
+                                <span class="label-text" th:text="${todo.getContent()}" />
+                            </label>
+
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-warning"><a th:href="@{/EditToDo/{id}(id=${todo.getId()})}">UPDATE</a></button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-warning"><a th:href="@{/deleteToDo/{id}(id=${todo.getId()})}">DELETE</a></button>
+                    </td>
+                </tr>
+
+            </div>
+                </table>
+                <a th:href="@{/AddToDo}" class="btn btn-primary">add</a>
+
+        </div>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ma To-Do List</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+<body>
+<h1>Ma To Do List </h1>
+<form action="/add"  method="post">
+  <div class="container">
+    <input type="text" name="task" placeholder="Nouvelle tâche" class="input-task" required><br>
+    <textarea cols="20" rows="5" name="Description" placeholder="saisir la description de votre tache ..."></textarea><br>
+    <button type="submit" class="btnadd">Ajouter</button>
+  </div>
+
+</form>
+<div class="list-task">
+ <center> <table id="customers">
+    <tr>
+      <th>Tâche</th>
+      <th>Description</th>
+      <th>Statut</th>
+      <th>Action</th>
+    </tr>
+    <tr th:each="todo : ${todos}">
+      <td th:text="${todo.task}"></td>
+        <td th:text="${todo.Description}"></td>
+      <td>
+        <input type="checkbox" name="completed" th:checked="${todo.completed}" disabled >
+      </td>
+      <td>
+        <div class="d-inline-block">
+          <form th:action="@{/update/{id}(id=${todo.id})}" method="post">
+            <input type="text" name="task" th:value="${todo.task}" hidden/>
+            <input type="checkbox" name="completed"  checked hidden>
+            <input cols="30" rows="10" name="Description" th:value="${todo.Description}" hidden />
+            <button type="submit" ><i class="bi bi-check2-circle"></i></button>
+          </form>
+        </div>
+     <div class="d-inline-block">
+       <form th:action="@{/delete/{id}(id=${todo.id})}" method="post">
+         <button type="submit"><i class="bi bi-trash"></i></button>
+       </form>
+     </div>
+
+      </td>
+    </tr>
+  </table></center>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

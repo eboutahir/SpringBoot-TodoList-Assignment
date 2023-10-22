@@ -30,7 +30,7 @@
         <td>
             <div class="d-inline-block">
                 <form th:action="@{/modi/{id}(id=${task.id})}" method="post">
-                    <input type="text" name="task" th:value="${task.task}" hidden/>
+                    <input type="text" name="task" th:value="${task.title}" hidden/>
                     <input type="checkbox" name="completed"  checked hidden>
                     <input cols="30" rows="10" name="Description" th:value="${task.Description}" hidden />
                     <button type="submit" ><i class="bi bi-check2-circle"></i></button>
@@ -45,7 +45,6 @@
     </tr>
     </tbody>
 </table>
-</body>
 <form action="/ajou"  method="post">
     <div class="container">
         tâche : <input type="text" name="task" placeholder="Nouvelle tâche" class="input-task" required>
@@ -54,4 +53,5 @@
     </div>
 
 </form>
+</body>
 </html>

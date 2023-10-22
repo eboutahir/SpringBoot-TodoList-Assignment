@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="box">
+        <h2>To Do List</h2>
+        <form th:action="@{/addTask}" method="post">
+            <input type="text" name="title" placeholder="Write here..." id="inputBx" required>
+            <button type="submit">Ajouter</button>
+        </form>
+
+        <ul id="list">
+            <li th:each="task : ${list}" th:class="${task.status == null ? '' : 'done'}">
+                <p th:text="${task.title}"></p>
+                <a th:href="@{/deleteTask/{id}(id=${task.id})}"><i></i></a>
+                <a th:href="@{/updateTaskStatus/{id}(id=${task.id})}"><img src="1.png"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
+
+

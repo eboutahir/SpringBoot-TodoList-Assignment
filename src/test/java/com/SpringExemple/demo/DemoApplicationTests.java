@@ -1,10 +1,10 @@
-package com.testconnexionbdd;
+package com.SpringExemple.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Tpnumero2ApplicationTests {
+class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {

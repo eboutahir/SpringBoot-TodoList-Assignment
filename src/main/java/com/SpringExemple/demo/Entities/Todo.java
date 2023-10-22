@@ -1,4 +1,4 @@
-package com.testconnexionbdd.model;
+package com.SpringExemple.demo.Entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,11 +10,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Task {
+public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String description;
+    private String task;
+    private String Description;
     private boolean completed;
+
+
 }

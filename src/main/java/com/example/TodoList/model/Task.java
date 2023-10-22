@@ -1,11 +1,17 @@
 package com.example.TodoList.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Task {
 
     @Id
@@ -13,7 +19,13 @@ public class Task {
     private Long id;
 
     private String title;
-    private String description;
 
-    // Getters and setters
+    private String status;
+
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
 }

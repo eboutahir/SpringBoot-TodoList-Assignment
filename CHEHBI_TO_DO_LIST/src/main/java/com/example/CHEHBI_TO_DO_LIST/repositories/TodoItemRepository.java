@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface TodoItemRepository extends CrudRepository<TodoItem, Long> {
+public interface TodoItemRepository extends CrudRepository<TodoItem, Integer> {
     List<TodoItem> findAll();
 
 }

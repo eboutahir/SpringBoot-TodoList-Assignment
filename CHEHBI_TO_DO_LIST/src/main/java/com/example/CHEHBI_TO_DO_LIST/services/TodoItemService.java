@@ -7,8 +7,8 @@ public interface TodoItemService {
     Iterable<TodoItem> getAllTasks();
 
     void saveTask(TodoItem todoItem);
-    TodoItem findTodoItemById(Long id);
+    TodoItem findTodoItemById(int id);
     void deleteTask(TodoItem todoItem);
-    void updateCompleteStatus(Long itemId, boolean isComplete);
+    void updateCompleteStatus(int itemId, boolean isComplete);
 
 }

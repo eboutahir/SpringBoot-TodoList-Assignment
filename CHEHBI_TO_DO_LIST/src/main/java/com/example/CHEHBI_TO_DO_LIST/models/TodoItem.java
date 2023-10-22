@@ -20,7 +20,7 @@ public class TodoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Long id;
+    private int id;
 
     @NotBlank(message = "Title is required")
     private String description;
@@ -48,11 +48,11 @@ public class TodoItem {
         this.modifiedDate = Instant.now();
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -91,7 +91,7 @@ public class TodoItem {
     @Override
     public String toString() {
         return String.format("TodoItem{id=%d, description='%s', complete='%s', createdDate='%s', modifiedDate='%s'}",
-        id, description, complete, createdDate, modifiedDate);
+                id, description, complete, createdDate, modifiedDate);
     }
 
 

@@ -21,17 +21,13 @@
     <link rel="stylesheet" href="css/animation.css" />
     <link rel="stylesheet" href="css/style.css" />
     <script th:inline="javascript">
-
         function toggleComplete(checkbox, itemId) {
             var isComplete = checkbox.checked;
-            var data = {
-                id: itemId,
-                complete: isComplete
-            };
-
+            var id = parseInt(itemId);
+            var data = new TodoItem(id, isComplete);
 
             $.ajax({
-                type: 'POST',
+                type: 'PUT',
                 url: '/updateComplete',
                 contentType: 'application/json',
                 data: JSON.stringify(data),
@@ -45,6 +41,14 @@
                 }
             });
         }
+
+        class TodoItem {
+            constructor(id, complete) {
+                this.id = id;
+                this.complete = complete;
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -95,7 +99,7 @@
                             <ul class="list-group mb-0">
 
                                 <thead>
-                                <tr class="table-headers">
+                                <tr>
                                     <th>Num</th>
                                     <th class="w-50">Task</th>
                                     <th>Date</th>

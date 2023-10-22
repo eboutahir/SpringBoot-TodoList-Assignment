@@ -17,7 +17,7 @@ public class TodoItemServiceImpl implements TodoItemService{
 
     @Override
     public List<TodoItem> getAllTasks() {
-       return todoItemRepository.findAll();
+        return todoItemRepository.findAll();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class TodoItemServiceImpl implements TodoItemService{
     }
 
     @Override
-    public TodoItem findTodoItemById(Long id) {
+    public TodoItem findTodoItemById(int id) {
         Optional<TodoItem> todoItemOptional = todoItemRepository.findById(id);
         if (todoItemOptional.isPresent()) {
             return todoItemOptional.get();
@@ -52,7 +52,7 @@ public class TodoItemServiceImpl implements TodoItemService{
 
 
     @Override
-    public void updateCompleteStatus(Long itemId, boolean isComplete) {
+    public void updateCompleteStatus(int itemId, boolean isComplete) {
         Optional<TodoItem> todoItemOptional = todoItemRepository.findById(itemId);
 
         if (todoItemOptional.isPresent()) {

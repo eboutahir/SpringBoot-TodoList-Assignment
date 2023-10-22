@@ -49,16 +49,16 @@ public class TodoItemController {
 
 
     @GetMapping("/delete/{id}")
-    public String deleteTodoItem(@PathVariable("id") long id, Model model) {
+    public String deleteTodoItem(@PathVariable("id") int id, Model model) {
         TodoItem todoItem = todoItemService.findTodoItemById(id);
 
         todoItemService.deleteTask(todoItem);
         return "redirect:/home";
     }
 
-    @PostMapping("/updateComplete")
+    @PutMapping("/updateComplete")
     public ResponseEntity<String> updateComplete(@RequestBody TodoItem request) {
-        Long itemId = request.getId();
+        int itemId = request.getId();
         boolean isComplete = request.isComplete();
 
         todoItemService.updateCompleteStatus(itemId, isComplete);

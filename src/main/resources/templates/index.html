@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <style>
+        .gradient-custom-2 {
+            background: #0693e3;
+            background: -webkit-linear-gradient(
+                    to right,
+                    #0693e3,
+                    rgba(255,105,0,1)
+            );
+            background: linear-gradient(
+                    to right,
+                    #0693e3,
+                    rgba(255,105,0,1)
+            );
+        }
+
+        .mask-custom {
+            background: rgba(24, 24, 16, 0.2);
+            border-radius: 2em;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            background-clip: padding-box;
+            box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+        }
+    </style>
+</head>
+<body>
+
+<section class="vh-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-10">
+                <div class="card mask-custom">
+                    <div class="card-body p-4 text-white">
+                        <div class="text-center pt-3 pb-2">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="Check" width="60">
+                            <h2 class="my-4">To Do List</h2>
+                        </div>
+                        <div class="alert alert-success" th:if="${successMessage}" id="successMessage">
+                            <span th:text="${successMessage}"></span>
+                        </div>
+                        <table class="table text-white mb-0 text-center" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="todo : ${todos}">
+                            <tr class="fw-normal">
+                                <th th:text="${todo.title}">
+                                    <span class="ms-2"></span>
+                                </th>
+                                <td class="align-middle" th:text="${todo.description}">
+                                    <span></span>
+                                </td>
+                                <td class="align-middle" th:text="${todo.date}">
+                                    <span></span>
+                                </td>
+                                <td class="align-middle">
+                                    <h6 class="mb-0">
+                                        <span th:if="${todo.completed}" class="badge rounded-pill bg-success">Completed</span>
+                                        <span th:unless="${todo.completed}" class="badge bg-danger rounded-pill">Not Completed</span>
+                                    </h6>
+                                </td>
+                                <td class="align-middle">
+                                    <a th:href="'/showTodo/' + ${todo.id}" class="btn btn-secondary" data-mdb-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt me-3"></i></a>
+                                    <form th:action="@{/deleteTodo/{id}(id=${todo.id})}" method="post" style="display: inline;">
+                                        <button type="submit" class="btn btn-warning " onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')"><i class="fas fa-trash-alt me-3"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+
+
+                        <div class="card-footer text-end p-3">
+                            <button style="background-color: #3C7189" class="btn text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Todo</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modal Ajouter -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/createTodo" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Todo </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-2">
+                    <div class="col mb-0">
+                        <label  class="form-label">Title</label>
+                        <input type="text" class="form-control" placeholder="put title" id="title" name="title"/>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label  class="form-label">description</label>
+                            <div class="input-group input-group-merge speech-to-text">
+                                <textarea class="form-control" placeholder="Saisir votre description  ici" rows="2" id="description" name="description"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label  class="form-label">Date</label>
+                                <input type="date" id="date" name="date" class="form-control"/>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+            </div>
+            </form>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cette tâche ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-danger" id="confirmDelete">Confirmer la suppression</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const dataTable = document.getElementById("dataTable");
+
+        searchInput.addEventListener("input", function () {
+            const searchTerm = searchInput.value.toLowerCase();
+            const rows = dataTable.querySelectorAll("tbody tr");
+
+            rows.forEach(function (row) {
+                const cells = row.querySelectorAll("td");
+                let rowVisible = false;
+
+                cells.forEach(function (cell) {
+                    if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                        rowVisible = true;
+                    }
+                });
+
+                row.style.display = rowVisible ? "table-row" : "none";
+            });
+        });
+    });
+
+</script>
+</html>

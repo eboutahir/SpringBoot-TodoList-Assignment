@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do list</title>
+    <link rel="icon" type="image/x-icon" href="imgs/to-do-list-icon.png" />
+    <!-- google font -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+            rel="stylesheet"
+    />
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- custom style -->
+    <link rel="stylesheet" href="css/media.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script th:inline="javascript">
+
+        function toggleComplete(checkbox, itemId) {
+            var isComplete = checkbox.checked;
+            var data = {
+                id: itemId,
+                complete: isComplete
+            };
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/updateComplete',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response) {
+
+                    console.log('Updated status:', response);
+                },
+                error: function (error) {
+
+                    console.error('Error:', error);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="to-do-list">
+    <div
+            class="container d-flex justify-content-center align-items-center p-5"
+    >
+        <div
+                class="to-do-list-body position-relative d-flex flex-column bg-white rounded-5"
+        >
+            <div class="dots position-absolute overflow-hidden">
+                <div class="dot"></div>
+            </div>
+            <div class="to-do-list-header rounded-5"></div>
+            <div class="to-do-list-tasks rounded-5 p-5">
+                <div class="title text-center">
+                    <h1 class="fw-bold">To-do list</h1>
+                    <p id="tasksInfo" class="fw-bold"></p>
+                </div>
+                <form action="#" th:action="@{/addTodo}" th:object="${todoItem}" method="post" >
+
+                    <div class="input-group mb-3">
+                        <input
+                                id="taskInput"
+                                type="text"
+                                th:field="*{description}"
+                                class="form-control"
+                                placeholder="Add your task ..."
+                                aria-label="Add your task"
+                                aria-describedby="button-addon2"
+                        />
+                        <button
+                                class="btn btn-outline-secondary"
+                                type="submit"
+                                id="addTaskBtn"
+                        >
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+                    </div>
+                </form>
+                <table class="table">
+
+
+                    <!-- Tabs content -->
+                    <div class="tab-content" id="ex1-content">
+                        <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
+                             aria-labelledby="ex1-tab-1">
+                            <ul class="list-group mb-0">
+
+                                <thead>
+                                <tr class="table-headers">
+                                    <th>Num</th>
+                                    <th class="w-50">Task</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+
+
+                                <tr th:each="item, itemStat : ${todoItems}" th:class="${item.complete} ? success : warning">
+                                    <th th:text="${itemStat.count}"></th>
+                                    <th th:text="${item.description}">item_description</th>
+                                    <td class="task-date d-flex justify-content-center" th:text="${item.createdDate}">item_created_date</td>
+                                    <th>
+                                        <input class="fa-regular fa-square-check" type="checkbox"
+                                               th:checked="${item.complete}" value="" aria-label="..."
+                                               onchange="toggleComplete(this, '${item.id}')"
+
+
+                                        />
+                                        <i class="fa-solid fa-square-check d-none"></i>
+                                    </th>
+
+                                    <th><a th:href="@{/delete/{id}(id=${item.id})}" class="custom-link"><i class="fa-solid fa-trash-can"></i></a></th>
+
+                                </tr>
+
+                            </ul>
+                        </div>
+                        </tbody>
+                    </div>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

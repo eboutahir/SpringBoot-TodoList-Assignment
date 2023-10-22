@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.min.css"/>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Backend Test || Mau ngapain? </title>
+  <link rel="icon" type="image/png" href="image/icon.png">
+
+</head>
+<body>
+<div class="container">
+  <div class="col-md-12 well">
+    <h3 class="text-primary" align="center">Liste des taches</h3>
+    <hr style="border-top:1px dotted #ccc;"/>
+
+    <form  class="form-inline" th:action="@{/processTaskForm}" th:object="${t}" method="POST">
+      <input type="text" class="form-control" placeholder="Saisir votre Tache" th:field="*{toDo}"/>
+
+      <br>
+      <center><button type="submit" id="submit"  class="btn btn-primary" style="width:30%;">Ajouter</button></center>
+
+    </form>
+    <br />
+<CENTER>
+    <table class="table" style="width:70%; ">
+      <thead>
+      <tr >
+        <th >#</th>
+        <th>Task</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr  th:each="t:${tache}">
+        <td th:text="${t.idTache}"></td>
+        <td th:text="${t.toDo}"></td>
+
+        <td>
+          <span th:if="${t.complited == false}">in progress</span>
+          <span th:if="${t.complited == true}">done</span></td>
+        <td colspan="2">
+
+            <a th:if="${t.complited == false}" th:href="@{/done/{id}(id=${t.idTache})}" class="btn btn-success">Done</a>
+            <a th:href="@{/delete/{id}(id=${t.idTache})}" class="btn btn-danger">Delete</a>
+
+        </td>
+      </tr>
+
+      </tbody>
+    </table></CENTER>
+  </div>
+</div>
+</body>
+</html>
